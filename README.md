@@ -33,6 +33,7 @@ python lfd_mujoco.py \
   --alpha=0.05 \
   --grad_reg_coeffs=(10., 1e-4) \
   --batch_size=256
+  --using_absorbing=True
 ```
 
 ### Bibtex
