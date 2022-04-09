@@ -4,8 +4,7 @@ This repository is the official implementation of [DemoDICE: Offline Imitation L
 ## Installation Guide
 
 ### Environment Variables
-Insert the following commands in `~/.bashrc`.
-
+- Insert the following commands in `~/.bashrc`.
     ```
     export MUJOCO_PY_MJKEY_PATH=$HOME/.mujoco/mjkey.txt
     export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/.mujoco/mujoco210/bin
@@ -13,7 +12,7 @@ Insert the following commands in `~/.bashrc`.
 
 
 ### MuJoCo
-Download MuJoCo version 2.1.0. Save 'mjkey.txt' to '$HOME/.mujoco'.
+- Download MuJoCo version 2.1.0. Save 'mjkey.txt' to '$HOME/.mujoco'.
 
 ### Conda Environment
 1. Create conda environment and activate it:
