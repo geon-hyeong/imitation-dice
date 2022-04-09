@@ -32,7 +32,7 @@ python lfd_mujoco.py \
   --imperfect_dataset_info=(["expert-v2", "random-v2"], [400, 1600]) \
   --alpha=0.05 \
   --grad_reg_coeffs=(10., 1e-4) \
-  --batch_size=256
+  --batch_size=256 \
   --using_absorbing=True
 ```
 
