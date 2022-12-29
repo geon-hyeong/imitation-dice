@@ -27,7 +27,7 @@ def get_parser():
     parser.add_argument('--expert_num_traj', default=5, type=int)
     parser.add_argument('--imperfect_dataset_names', default=[], action='append')
     parser.add_argument('--imperfect_num_trajs', default=[], action='append', type=int)
-    parser.add_argument('--imperfect_dataset_default_info', default=(["expert-v2", "medium-v2", "random-v2"], [100, 1000, 1000]))
+    parser.add_argument('--imperfect_dataset_default_info', default=(["expert-v2", "random-v2"], [100, 1000]))
     parser.add_argument('--resume', default=True, type=bool)
     # optional
     parser.add_argument('--total_iterations', default=int(2e6), type=int)
@@ -36,7 +36,7 @@ def get_parser():
     parser.add_argument('--critic_lr', default=3e-4, type=float)
     parser.add_argument('--actor_lr', default=3e-4, type=float)
     parser.add_argument('--gamma', default=0.99, type=float)
-    parser.add_argument('--alpha', default=0.1, type=float)
+    parser.add_argument('--alpha', default=0.0, type=float)
     parser.add_argument('--hidden_size', default=256, type=int)
     parser.add_argument('--batch_size', default=512, type=int)
     parser.add_argument('--using_absorbing', default=False, type=bool)
