@@ -27,20 +27,20 @@ This repository is the official implementation of
     - Please see [Troubleshooting](https://github.com/openai/mujoco-py#troubleshooting) in [mujoco-py](https://github.com/openai/mujoco-py)
 
 ### How to Run
-1. Run DemoDICE
+1. DemoDICE
     ```
     python lfd_mujoco.py \
-      --env_id=Hopper \
+      --env_id=Hopper-v2 \
       --imperfect_dataset_names=expert-v2 \
       --imperfect_dataset_names=random-v2 \ 
       --imperfect_num_trajs=100 \
       --imperfect_num_trajs=500 \
       --algorithm=demodice
     ```
-2. Run LobsDICE
+2. LobsDICE
     ```
     python lfo_mujoco.py \
-      --env_id=Hopper \
+      --env_id=Hopper-v2 \
       --imperfect_dataset_names=expert-v2 \
       --imperfect_dataset_names=medium-v2 \
       --imperfect_dataset_names=random-v2 \ 
