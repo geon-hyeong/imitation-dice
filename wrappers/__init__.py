@@ -34,7 +34,6 @@ def create_il_env(env_name, seed, shift, scale, normalized_box_actions: bool = T
     env = gym.make(env_name)
     if normalized_box_actions:
         env = check_and_normalize_box_actions(env)
-    env.seed(seed)
 
     if shift is not None:
         env = NormalizeStateWrapper(env, shift=shift, scale=scale)

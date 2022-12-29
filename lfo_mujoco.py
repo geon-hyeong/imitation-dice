@@ -7,7 +7,7 @@ import numpy as np
 import tensorflow as tf
 from tqdm import tqdm
 import wrappers
-import demodice
+import lobsdice
 import utils
 import time
 import pickle
@@ -145,8 +145,8 @@ def run(config):
     # Create imitator
     is_discrete_action = env.action_space.dtype == int
     action_dim = env.action_space.n if is_discrete_action else env.action_space.shape[0]
-    if algorithm == 'demodice':
-        imitator = demodice.DemoDICE(
+    if algorithm == 'lobsdice':
+        imitator = lobsdice.LobsDICE(
             observation_dim,
             action_dim,
             is_discrete_action,
@@ -182,7 +182,7 @@ def run(config):
     with tqdm(total=config['total_iterations'], initial=training_info['iteration'], desc='',
               disable=os.environ.get("DISABLE_TQDM", False), ncols=70) as pbar:
         while training_info['iteration'] < config['total_iterations']:
-            if algorithm in ['demodice']:
+            if algorithm in ['lobsdice']:
                 union_init_indices = np.random.randint(0, len(union_init_states), size=config['batch_size'])
                 expert_indices = np.random.randint(0, len(expert_states), size=config['batch_size'])
                 union_indices = np.random.randint(0, len(union_states), size=config['batch_size'])
@@ -190,7 +190,6 @@ def run(config):
                 info_dict = imitator.update(
                     union_init_states[union_init_indices],
                     expert_states[expert_indices],
-                    expert_actions[expert_indices],
                     expert_next_states[expert_indices],
                     union_states[union_indices],
                     union_actions[union_indices],
@@ -224,7 +223,7 @@ def run(config):
 
 
 if __name__ == "__main__":
-    from config.lfd_default_config import get_parser
+    from config.lfo_default_config import get_parser
 
     # configurations
     args = get_parser().parse_args()

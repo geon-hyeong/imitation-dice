@@ -1,18 +1,17 @@
-# DemoDICE
-This repository is the official implementation of [DemoDICE: Offline Imitation Learning with Supplementary Imperfect Demonstrations](https://openreview.net/pdf?id=BrPdX1bDZkQ) (presented at ICLR 2022).
+# DemoDICE and LobsDICE
+This repository is the official implementation of 
+- [DemoDICE: Offline Imitation Learning with Supplementary Imperfect Demonstrations](https://openreview.net/pdf?id=BrPdX1bDZkQ) (presented at ICLR 2022).
+- [LobsDICE: Offline Learning from Observation via Stationary Distribution Correction Estimation](https://arxiv.org/abs/2202.13536) (presented at NeurIPS 2022).
 
 ## Installation Guide
 
-### Environment Variables
+### MuJoCo
+- Download [MuJoCo](https://mujoco.org/) version 2.1
+- Extract the downloaded `mujoco210` directory into `~/.mujoco/mujoco210`
 - Insert the following commands in `~/.bashrc`.
     ```
-    export MUJOCO_PY_MJKEY_PATH=$HOME/.mujoco/mjkey.txt
-    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/.mujoco/mujoco210/bin
+    export LD_LIBRARY_PATH="$HOME/.mujoco/mujoco210/bin:$LD_LIBRARY_PATH"
     ```
-
-
-### MuJoCo
-- Download MuJoCo version 2.1.0. Save 'mjkey.txt' to '$HOME/.mujoco'.
 
 ### Conda Environment
 1. Create conda environment and activate it:
@@ -20,30 +19,51 @@ This repository is the official implementation of [DemoDICE: Offline Imitation L
 conda env create -f environment.yml
 conda activate imitation-dice
 ```
-2. Install 'd4rl':
+2. (Optional) Install 'd4rl':
 ```
 pip install git+https://github.com/rail-berkeley/d4rl@master#egg=d4rl
 ```
+3. (Optional) Issues with mujoco-py
+Please see [Troubleshooting](https://github.com/openai/mujoco-py#troubleshooting) in [mujoco-py](https://github.com/openai/mujoco-py)
 
 ### How to Run
+1. Run DemoDICE
 ```
 python lfd_mujoco.py \
   --env_id=Hopper \
-  --imperfect_dataset_info=(["expert-v2", "random-v2"], [400, 1600]) \
-  --alpha=0.05 \
-  --grad_reg_coeffs=(10., 1e-4) \
-  --batch_size=256 \
-  --using_absorbing=True
+  --imperfect_dataset_names=expert-v2 \
+  --imperfect_dataset_names=random-v2 \ 
+  --imperfect_num_trajs=100 \
+  --imperfect_num_trajs=500 \
+  --algorithm=demodice
+```
+2. Run LobsDICE
+```
+python lfo_mujoco.py \
+  --env_id=Hopper \
+  --imperfect_dataset_names=expert-v2 \
+  --imperfect_dataset_names=medium-v2 \
+  --imperfect_dataset_names=random-v2 \ 
+  --imperfect_num_trajs=100 \
+  --imperfect_num_trajs=500 \
+  --imperfect_num_trajs=500 \
+  --algorithm=lobsdice
 ```
 
 ### Bibtex
-
-If you use this code, please cite our paper:
 ```
 @inproceedings{kim2022demodice,
-  author    = {Geon-Hyeong Kim and Seokin Seo and Jongmin Lee and Wonseok Jeon and HyeongJoo Hwang and Hongseok Yang and Kee-Eung Kim},
   title     = {DemoDICE: Offline Imitation Learning with Supplementary Imperfect Demonstrations},
-  booktitle = {International Conference on Learning Representations (ICLR)},
+  author    = {Geon-Hyeong Kim and Seokin Seo and Jongmin Lee and Wonseok Jeon and HyeongJoo Hwang and Hongseok Yang and Kee-Eung Kim},
+  booktitle = {International Conference on Learning Representations},
   year      = {2022}
+}
+```
+```
+@article{kim2022lobsdice,
+  title   = {LobsDICE: Offline Learning from Observation via Stationary Distribution Correction Estimation},
+  author  = {Geon-Hyeong Kim and Jongmin Lee and Youngsoo Jang and Hongseok Yang and Kee-Eung Kim},
+  journal = {Advances in Neural Information Processing Systems},
+  year    = {2022}
 }
 ```

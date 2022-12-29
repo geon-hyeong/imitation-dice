@@ -1,37 +1,25 @@
 name: imitation-dice
 channels:
 - menpo  # for osmesa
-# - conda-forge
 dependencies:
-- python=3.6
-- cudatoolkit=10.1
-- cudnn=7
-- numpy<1.19
+- python=3.7
 - matplotlib
 - tqdm
 - patchelf
-# - osmesa=12.2.2.dev=0  # for mujoco_py in ailab-condor  (conda install -c menpo osmesa)
-# - libgcc-ng=9.1.0
 - pip
-# - glew
-# - glfw3  # for d4rl in ailab-condor
 - cffi
 - cython
 - lockfile
 - pip:
-  # - stable-baselines==2.10.1
-  - tensorflow-gpu==2.3.1
   - tensorflow-gan==2.0.0
-  - tensorflow-probability==0.11.1
+  - tensorflow==2.5.1
+  - tensorflow-probability==0.13.0
+  - numpy==1.19.5
   - gym==0.17.3
   - pyglib==0.1
   - scipy
   - mujoco-py==2.1.2.14
   - tf-agents==0.6.0
-  - cloudpickle==1.3
   - wandb
-  - tqdm
-  - stable-baselines3  # for vectorized env
-  - Box2D  # for LunarLander
-  - box2d-py  # for LunarLander
-  # - git+https://github.com/rail-berkeley/d4rl@master#egg=d4rl
+  # - Box2D  # for LunarLander
+  # - box2d-py  # for LunarLander
